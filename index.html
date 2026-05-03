@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFF GLORY | Premium Access</title>
+    <style>
+        :root {
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --accent: #ffffff;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background: #000; /* Pure Black for Premium look */
+            color: #ffffff;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow: hidden;
+        }
+
+        /* --- Minimalist Entry Screen --- */
+        #entry-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000;
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .entry-content {
+            text-align: center;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .open-btn {
+            background: transparent;
+            color: #fff;
+            padding: 18px 45px;
+            border-radius: 12px; /* Apple style slight curve */
+            font-weight: 500;
+            font-size: 16px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.3);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .open-btn:hover {
+            background: #fff;
+            color: #000;
+            border-color: #fff;
+            letter-spacing: 6px;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        }
+
+        /* --- Main UI (Glassmorphism) --- */
+        #main-ui {
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.95);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            display: flex; justify-content: center;
+            padding: 20px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(30px) saturate(200%);
+            -webkit-backdrop-filter: blur(30px) saturate(200%);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            width: 100%; max-width: 400px;
+            padding: 40px 30px; text-align: center;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
+        }
+
+        .logo-img {
+            width: 90px; height: 90px;
+            border-radius: 22px; margin-bottom: 20px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+        }
+
+        h1 { font-size: 26px; font-weight: 700; letter-spacing: -1px; margin-bottom: 8px; }
+        
+        .price-badge {
+            background: rgba(255, 255, 255, 0.05);
+            color: #34C759; padding: 6px 18px;
+            border-radius: 50px; font-size: 13px; margin-bottom: 30px;
+            display: inline-block; font-weight: 600;
+            border: 1px solid rgba(52, 199, 89, 0.2);
+        }
+
+        .settings-panel {
+            background: rgba(255, 255, 255, 0.03); border-radius: 24px;
+            padding: 20px; text-align: left; margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .setting-header { color: #FF9F0A; font-size: 11px; font-weight: 800; margin-bottom: 15px; letter-spacing: 1px; }
+        .row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .row:last-child { border-bottom: none; }
+
+        .switch-group { display: flex; background: #000; border-radius: 10px; padding: 3px; border: 1px solid #222; }
+        .switch-btn { padding: 5px 14px; font-size: 10px; font-weight: 700; border-radius: 7px; color: #444; }
+        .switch-btn.active { background: #fff; color: #000; }
+
+        .qr-card { 
+            background: #fff; padding: 12px; border-radius: 24px; 
+            display: inline-block; margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+        .qr-card:hover { transform: scale(1.03); }
+        .qr-img { width: 170px; height: 170px; display: block; filter: contrast(1.1); }
+
+        .wa-button {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
+            background: #fff; color: #000; text-decoration: none;
+            padding: 20px; border-radius: 22px; font-weight: 700; font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        .wa-button:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,255,255,0.1); }
+    </style>
+</head>
+<body>
+
+    <div id="entry-screen">
+        <div class="entry-content">
+            <button class="open-btn" onclick="openSite()">SFF GLORY</button>
+        </div>
+    </div>
+
+    <div id="main-ui">
+        <div class="glass-card">
+            <img src="logo.png" alt="SFF" class="logo-img">
+            
+            <h1>SFF FAMILY</h1>
+            <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 20px; letter-spacing: 1px;">PREMIUM GUILD SERVICES</p>
+
+            <div class="price-badge">1 SQUAD : RS. 400</div>
+
+            <div class="settings-panel">
+                <div class="setting-header">GUILD CONFIGURATION</div>
+                <div class="row">
+                    <span style="font-size: 13px; opacity: 0.8;">AUTO APPROVAL</span>
+                    <div class="switch-group">
+                        <div class="switch-btn active">OFF</div>
+                        <div class="switch-btn">ON</div>
+                    </div>
+                </div>
+                <div class="row"><span style="font-size: 13px; opacity: 0.8;">LV. REQUIREMENT</span><span style="color:rgba(255,255,255,0.3); font-size: 12px;">DEFAULT ▼</span></div>
+                <div class="row"><span style="font-size: 13px; opacity: 0.8;">BR-RANKED</span><span style="color:rgba(255,255,255,0.3); font-size: 12px;">DEFAULT ▼</span></div>
+            </div>
+
+            <div class="qr-card">
+                <img src="qr.png" alt="Payment" class="qr-img">
+            </div>
+
+            <p style="font-size: 11px; color: rgba(255,255,255,0.4); margin-bottom: 25px; line-height: 1.6;">
+                SEND SCREENSHOT & GUILD ID AFTER PAYMENT
+            </p>
+
+            <a href="https://wa.me/9779811163171?text=Hello%20SFF%20Family,%20I%20want%20to%20order%20Guild%20Glory%20service." class="wa-button">
+                GET STARTED
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function openSite() {
+            const entry = document.getElementById('entry-screen');
+            const main = document.getElementById('main-ui');
+
+            entry.style.opacity = '0';
+            entry.style.transform = 'scale(1.1)';
+            
+            setTimeout(() => {
+                entry.style.display = 'none';
+                main.style.visibility = 'visible';
+                main.style.opacity = '1';
+                main.style.transform = 'scale(1)';
+            }, 600);
+        }
+    </script>
+
+</body>
+</html>
